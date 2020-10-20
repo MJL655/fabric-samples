@@ -3,6 +3,8 @@ docker rmi -f `docker images -q`
 # pull all GM fabric images
 docker pull studyzy/fabric-ccenv
 docker tag studyzy/fabric-ccenv hyperledger/fabric-ccenv
+docker tag hyperledger/fabric-ccenv hyperledger/fabric-ccenv:1.4
+docker tag hyperledger/fabric-ccenv hyperledger/fabric-ccenv:1.4.8
 
 docker pull studyzy/fabric-ca
 docker tag studyzy/fabric-ca hyperledger/fabric-ca
