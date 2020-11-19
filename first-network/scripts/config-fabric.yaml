@@ -10,7 +10,7 @@ client:
     level: info
   # Root of the MSP directories with keys and certs.
   cryptoconfig:
-    path: ../first-network/crypto-config
+    path: ../crypto
   # Some SDKs support pluggable KV stores, the properties under "credentialStore"
   # are implementation specific
   credentialStore:
@@ -37,9 +37,9 @@ client:
     # [Optional]. Client key and cert for TLS handshake with peers and orderers
     client:
       key:
-        path: ../first-network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/client.key
+        path: ../crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/client.key
       cert:
-        path: ../first-network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/client.crt
+        path: ../crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/client.crt
 
 
 # [Optional]. But most apps would have this section so that channel objects can be constructed
@@ -134,14 +134,14 @@ organizations:
 orderers:
   orderer.example.com:
     # [Optional] Default: Infer from hostname
-    url: grpcs://127.0.0.1:7050
+    url: grpcs://orderer.example.com:7050
     # these are standard properties defined by the gRPC library
     # they will be passed in as-is to gRPC client constructor
 #    grpcOptions:
 #      ssl-target-name-override: orderer.example.com
     tlsCACerts:
       # Certificate location path
-      path: ../first-network/crypto-config/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem
+      path: ../crypto/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem
 
 
 # List of peers to send various requests to, including endorsement, query
@@ -150,20 +150,20 @@ peers:
   peer0.org1.example.com:
     # this URL is used to send endorsement and query requests
     # [Optional] Default: Infer from hostname
-    url: grpcs://127.0.0.1:7051
+    url: grpcs://peer0.org1.example.com:7051
     # these are standard properties defined by the gRPC library
     # they will be passed in as-is to gRPC client constructor
     grpcOptions:
       ssl-target-name-override: peer0.org1.example.com
     tlsCACerts:
       # Certificate location path
-      path: ../first-network/crypto-config/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
+      path: ../crypto/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
   peer1.org1.example.com:
-    url: grpcs://127.0.0.1:8051
+    url: grpcs://peer1.org1.example.com:8051
     grpcOptions:
       ssl-target-name-override: peer1.org1.example.com
     tlsCACerts:
-      path: ../first-network/crypto-config/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
+      path: ../crypto/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
 
 
 

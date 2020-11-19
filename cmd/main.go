@@ -11,20 +11,24 @@ import (
 	"github.com/studyzy/fabric-sdk-go/pkg/util/pathvar"
 )
 var (
-	fabricSdk        *fabsdk.FabricSDK
-	userName string="User1"
-	orgName string=""
+	userName ="User1"
+	orgName ="Org1"
 	configFabricPath="./config-fabric.yaml"
 )
 func main() {
-	configProvider := config.FromFile(pathvar.Subst(configFabricPath))
-	fabricSdk, _ = fabsdk.New(configProvider)
-	queryChainInfo()
+	err:=queryChainInfo()
+	if err!=nil{
+		fmt.Println(err.Error())
+	}
 }
 
 
 func queryChainInfo() error {
-
+	configProvider := config.FromFile(pathvar.Subst(configFabricPath))
+	fabricSdk, err := fabsdk.New(configProvider)
+	if err!=nil{
+		return err
+	}
 	channelContext := fabricSdk.ChannelContext("mychannel", fabsdk.WithUser(userName), fabsdk.WithOrg(orgName))
 	client, err := ledger.New(channelContext)
 	if err != nil {
